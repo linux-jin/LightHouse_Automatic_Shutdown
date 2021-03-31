@@ -4,6 +4,8 @@
 name: LightHouse_Automatic_Shutdown
 
 on:
+  watch:
+    types: started
   push:
     branches: 
     - main
