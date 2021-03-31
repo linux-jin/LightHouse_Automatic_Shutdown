@@ -74,6 +74,10 @@ def dofetch(id, key, region):
             # 实例流量超出限制自动关闭
             if (TrafficUsed / TrafficPackageTotal < percent):
                 print("剩余流量充足")
+                msgContent= InstanceId + "总流量" + str(TrafficPackageTotal) + "GB，已使用：" + str(TrafficUsed) + "GB，剩余流量：" + str(TrafficPackageRemaining) + "GB"
+                msgUrl= tgBotUrl + "/api?token=" + tgToken +"&message="+ msgContent          
+                response= requests.get(url=msgUrl).text
+                print (response)
 
             else:
                 print(InstanceId, ":", "流量超出限制，自动关闭")
@@ -91,6 +95,9 @@ def dofetch(id, key, region):
                 response = requests.get(url=msgUrl).text
                 print(response)
         else:
+            msgContent= InstanceId + " 已关机"
+            msgUrl= tgBotUrl + "/api?token=" + tgToken +"&message="+ msgContent          
+            response= requests.get(url=msgUrl).text
             print("已关机")
 
         # 添加时间戳
